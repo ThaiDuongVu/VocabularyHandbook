@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Vocabulary Handbook</string>
+
+    <string name="word_edit_text">Word</string>
+    <string name="definition_edit_text">Definition</string>
+    <string name="synonyms_edit_text">Synonyms</string>
+    <string name="antonyms_edit_text">Antonyms</string>
+    <string name="collocations_edit_text">Collocations</string>
+    <string name="examples_edit_text">Examples</string>
+
+    <string name="verb_check_box">Verb</string>
+    <string name="noun_check_box">Noun</string>
+    <string name="adj_check_box">Adj</string>
+    <string name="adverb_check_box">Adverb</string>
+
+    <string name="formal_switch">Formal</string>
+
+    <string name="save_button">Save</string>
+</resources>
