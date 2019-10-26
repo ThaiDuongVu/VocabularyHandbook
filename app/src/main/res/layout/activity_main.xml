@@ -79,7 +79,7 @@
         tools:text="@string/collocations_edit_text" />
 
     <EditText
-        android:id="@+id/exampleEditText"
+        android:id="@+id/examplesEditText"
         android:layout_width="360dp"
         android:layout_height="80dp"
         android:autofillHints=""
@@ -204,6 +204,6 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.913" />
+        app:layout_constraintVertical_bias="0.937" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
