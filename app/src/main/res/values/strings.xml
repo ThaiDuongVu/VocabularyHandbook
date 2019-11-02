@@ -16,4 +16,7 @@
     <string name="formal_switch">Formal</string>
 
     <string name="save_button">Save</string>
+
+    <string name="new_vocab_button">New</string>
+    <string name="edit_button">Edit</string>
 </resources>
