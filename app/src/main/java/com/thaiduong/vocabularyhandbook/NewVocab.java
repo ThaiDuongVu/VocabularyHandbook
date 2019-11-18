@@ -47,42 +47,26 @@ public class NewVocab extends AppCompatActivity {
     }
 
     public void onSaveButtonClicked(View view) {
-        String word = wordEditText.getText().toString();
-        String definition = definitionEditText.getText().toString();
-        String synonyms = synonymsEditText.getText().toString();
-        String antonyms = antonymsEditText.getText().toString();
-        String collocations = collocationsEditText.getText().toString();
-        String examples = examplesEditText.getText().toString();
+        newWord.word = wordEditText.getText().toString();
+        newWord.definition = definitionEditText.getText().toString();
+        newWord.synonyms = synonymsEditText.getText().toString();
+        newWord.antonyms = antonymsEditText.getText().toString();
+        newWord.collocations = collocationsEditText.getText().toString();
+        newWord.examples = examplesEditText.getText().toString();
 
-        boolean verb = verbCheckBox.isChecked();
-        boolean noun = nounCheckBox.isChecked();
-        boolean adj = adjCheckBox.isChecked();
-        boolean adverb = adverbCheckBox.isChecked();
+        newWord.verb = verbCheckBox.isChecked();
+        newWord.noun = nounCheckBox.isChecked();
+        newWord.adj = adjCheckBox.isChecked();
+        newWord.adverb = adverbCheckBox.isChecked();
 
-        boolean formal = formalSwitch.isChecked();
+        newWord.formal = formalSwitch.isChecked();
 
-        newWord.word = word;
-        newWord.definition = definition;
-        newWord.synonyms = synonyms;
-        newWord.antonyms = antonyms;
-        newWord.collocations = collocations;
-        newWord.examples = examples;
-
-        newWord.verb = verb;
-        newWord.noun = noun;
-        newWord.adj = adj;
-        newWord.adverb = adverb;
-
-        newWord.formal = formal;
+        newWord.saveWord(sharedPreferences, numberOfWords);
+        Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
 
         if (!saveButtonClicked) {
-            newWord.saveWord(sharedPreferences, numberOfWords);
-
             numberOfWords++;
             sharedPreferences.edit().putInt("NumberOfWords", numberOfWords).apply();
-
-            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
-
             saveButtonClicked = true;
         }
     }
