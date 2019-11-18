@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -50,6 +51,13 @@ public class HomeActivity extends AppCompatActivity {
         editButton.setText(getResources().getString(R.string.edit_button));
         editButton.setTextSize(18);
 
+        editButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent editIntent = new Intent(view.getContext(), EditText.class);
+                startActivityForResult(editIntent, 0);
+            }
+        });
+
         linearLayout.addView(word);
         linearLayout.addView(definition);
         linearLayout.addView(editButton);
@@ -57,7 +65,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void onNewButtonClicked(View view)
     {
-        Intent intent = new Intent(view.getContext(), NewVocab.class);
-        startActivityForResult(intent, 0);
+        Intent newIntent = new Intent(view.getContext(), NewVocab.class);
+        startActivityForResult(newIntent, 0);
     }
 }

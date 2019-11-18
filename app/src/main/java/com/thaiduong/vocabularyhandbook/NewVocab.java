@@ -7,7 +7,9 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class NewVocab extends AppCompatActivity {
@@ -73,11 +75,14 @@ public class NewVocab extends AppCompatActivity {
 
         newWord.formal = formal;
 
-        newWord.saveWord(sharedPreferences, numberOfWords);
-
         if (!saveButtonClicked) {
+            newWord.saveWord(sharedPreferences, numberOfWords);
+
             numberOfWords++;
             sharedPreferences.edit().putInt("NumberOfWords", numberOfWords).apply();
+
+            Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+
             saveButtonClicked = true;
         }
     }
@@ -99,5 +104,10 @@ public class NewVocab extends AppCompatActivity {
 
         sharedPreferences = this.getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
         numberOfWords = sharedPreferences.getInt("NumberOfWords", 0);
+
+        ActionBar actionBar;
+        actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 }
