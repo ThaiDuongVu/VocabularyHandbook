@@ -79,7 +79,7 @@ public class NewVocab extends AppCompatActivity {
         collocationsEditText = findViewById(R.id.collocationsEditText);
         examplesEditText = findViewById(R.id.examplesEditText);
 
-        verbCheckBox = findViewById(R.id.verbCheckBox);
+        verbCheckBox = (CheckBox) findViewById(R.id.verbCheckBox);
         nounCheckBox = findViewById(R.id.nounCheckBox);
         adjCheckBox = findViewById(R.id.adjCheckBox);
         adverbCheckBox = findViewById(R.id.adverbCheckBox);

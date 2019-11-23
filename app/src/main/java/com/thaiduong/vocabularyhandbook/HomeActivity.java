@@ -7,7 +7,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -43,8 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         word.setTextSize(20);
         word.setTypeface(null, Typeface.BOLD);
 
-        for (int i = 0; i < textViews.length; i++)
-        {
+        for (int i = 0; i < textViews.length; i++) {
             textViews[i] = new TextView(this);
             textViews[i].setTextAppearance(this, R.style.TextAppearance_AppCompat);
             textViews[i].setTextSize(18);
@@ -57,29 +55,22 @@ public class HomeActivity extends AppCompatActivity {
         String examples = "Examples: " + sharedPreferences.getString("Example" + index, "");
 
         String type = "Type: ";
-        if (sharedPreferences.getBoolean("Verb", false))
-        {
+        if (sharedPreferences.getBoolean("Verb", false)) {
             type += "Verb ";
         }
-        if (sharedPreferences.getBoolean("Noun", false))
-        {
+        if (sharedPreferences.getBoolean("Noun", false)) {
             type += "Noun ";
         }
-        if (sharedPreferences.getBoolean("Adj", false))
-        {
+        if (sharedPreferences.getBoolean("Adj", false)) {
             type += "Adj ";
         }
-        if (sharedPreferences.getBoolean("Adverb", false))
-        {
+        if (sharedPreferences.getBoolean("Adverb", false)) {
             type += "Adverb ";
         }
         String formality = "Formality: ";
-        if (sharedPreferences.getBoolean("Formal", false))
-        {
+        if (sharedPreferences.getBoolean("Formal", false)) {
             formality += "Formal";
-        }
-        else
-        {
+        } else {
             formality += "Informal";
         }
 
@@ -103,8 +94,7 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         linearLayout.addView(word);
-        for (int i = 0; i < textViews.length; i++)
-        {
+        for (int i = 0; i < textViews.length; i++) {
             linearLayout.addView(textViews[i]);
         }
         linearLayout.addView(editButton);
