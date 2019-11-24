@@ -9,10 +9,12 @@ public class NewWord {
     public String antonyms;
     public String collocations;
     public String examples;
+
     public boolean verb;
     public boolean noun;
     public boolean adj;
     public boolean adverb;
+    
     public boolean formal;
 
     public void saveWord(SharedPreferences sharedPreferences, int index) {
@@ -28,6 +30,6 @@ public class NewWord {
         sharedPreferences.edit().putBoolean("Adj" + index, adj).apply();
         sharedPreferences.edit().putBoolean("Adverb" + index, adverb).apply();
 
-        sharedPreferences.edit().putBoolean("Formal", formal).apply();
+        sharedPreferences.edit().putBoolean("Formal" + index, formal).apply();
     }
 }

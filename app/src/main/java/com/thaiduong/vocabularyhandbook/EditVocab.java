@@ -1,8 +1,10 @@
 package com.thaiduong.vocabularyhandbook;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -10,6 +12,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EditVocab extends AppCompatActivity {
@@ -54,20 +57,20 @@ public class EditVocab extends AppCompatActivity {
         collocationsEditText.setText(sharedPreferences.getString("Collocations" + index, ""));
         examplesEditText.setText(sharedPreferences.getString("Example" + index, ""));
 
-        if (sharedPreferences.getBoolean("Verb", false)) {
+        if (sharedPreferences.getBoolean("Verb" + index, false)) {
             verbCheckBox.setChecked(true);
         }
-        if (sharedPreferences.getBoolean("Noun", false)) {
+        if (sharedPreferences.getBoolean("Noun" + index, false)) {
             nounCheckBox.setChecked(true);
         }
-        if (sharedPreferences.getBoolean("Adj", false)) {
+        if (sharedPreferences.getBoolean("Adj" + index, false)) {
             adjCheckBox.setChecked(true);
         }
-        if (sharedPreferences.getBoolean("Adverb", false)) {
+        if (sharedPreferences.getBoolean("Adverb" + index, false)) {
             adverbCheckBox.setChecked(true);
         }
 
-        if (sharedPreferences.getBoolean("Formal", false)) {
+        if (sharedPreferences.getBoolean("Formal" + index, false)) {
             formalSwitch.setChecked(true);
         }
     }

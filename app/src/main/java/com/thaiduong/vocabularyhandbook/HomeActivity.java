@@ -55,20 +55,20 @@ public class HomeActivity extends AppCompatActivity {
         String examples = "Examples: " + sharedPreferences.getString("Example" + index, "");
 
         String type = "Type: ";
-        if (sharedPreferences.getBoolean("Verb", false)) {
+        if (sharedPreferences.getBoolean("Verb" + index, false)) {
             type += "Verb ";
         }
-        if (sharedPreferences.getBoolean("Noun", false)) {
+        if (sharedPreferences.getBoolean("Noun" + index, false)) {
             type += "Noun ";
         }
-        if (sharedPreferences.getBoolean("Adj", false)) {
+        if (sharedPreferences.getBoolean("Adj" + index, false)) {
             type += "Adj ";
         }
-        if (sharedPreferences.getBoolean("Adverb", false)) {
+        if (sharedPreferences.getBoolean("Adverb" + index, false)) {
             type += "Adverb ";
         }
         String formality = "Formality: ";
-        if (sharedPreferences.getBoolean("Formal", false)) {
+        if (sharedPreferences.getBoolean("Formal" + index, false)) {
             formality += "Formal";
         } else {
             formality += "Informal";
