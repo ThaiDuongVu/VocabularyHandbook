@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
@@ -36,6 +37,8 @@ public class EditVocab extends AppCompatActivity {
     private int index;
 
     private NewWord editWord;
+
+    private Vibrator vibrator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,9 @@ public class EditVocab extends AppCompatActivity {
     }
 
     public void saveWord(View view) {
+        int vibratingDuration = 50;
+        vibrator.vibrate(vibratingDuration);
+
         editWord.word = wordEditText.getText().toString();
         editWord.definition = definitionEditText.getText().toString();
         editWord.synonyms = synonymsEditText.getText().toString();
@@ -95,6 +101,8 @@ public class EditVocab extends AppCompatActivity {
     }
 
     private void initialize() {
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         wordEditText = findViewById(R.id.wordEditText);
         definitionEditText = findViewById(R.id.definitionEditText);
         synonymsEditText = findViewById(R.id.synonymsEditText);

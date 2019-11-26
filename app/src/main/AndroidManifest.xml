@@ -27,5 +27,6 @@
             android:parentActivityName=".HomeActivity"
             android:screenOrientation="portrait"></activity>
     </application>
+    <uses-permission android:name="android.permission.VIBRATE"></uses-permission>
 
 </manifest>

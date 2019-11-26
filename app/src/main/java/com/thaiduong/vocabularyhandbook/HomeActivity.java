@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class HomeActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
+    private Vibrator vibrator;
+    private int vibratingDuration = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,8 @@ public class HomeActivity extends AppCompatActivity {
 
         sharedPreferences = this.getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
         int numberOfWords = sharedPreferences.getInt("NumberOfWords", 0);
+
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         for (int i = 0; i < numberOfWords; i++) {
             addExistingWords(i);
@@ -87,6 +92,7 @@ public class HomeActivity extends AppCompatActivity {
 
         editButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                vibrator.vibrate(vibratingDuration);
                 sharedPreferences.edit().putInt("EditIndex", index).apply();
                 Intent editIntent = new Intent(view.getContext(), EditVocab.class);
                 startActivityForResult(editIntent, 0);
@@ -101,6 +107,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onNewButtonClicked(View view) {
+        vibrator.vibrate(vibratingDuration);
         Intent newIntent = new Intent(view.getContext(), NewVocab.class);
         startActivityForResult(newIntent, 0);
     }

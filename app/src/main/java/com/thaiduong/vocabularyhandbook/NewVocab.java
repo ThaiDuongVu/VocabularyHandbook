@@ -3,6 +3,7 @@ package com.thaiduong.vocabularyhandbook;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -36,6 +37,8 @@ public class NewVocab extends AppCompatActivity {
 
     private boolean saveButtonClicked;
 
+    private Vibrator vibrator;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,9 @@ public class NewVocab extends AppCompatActivity {
     }
 
     public void onSaveButtonClicked(View view) {
+        int vibratingDuration = 50;
+        vibrator.vibrate(vibratingDuration);
+
         newWord.word = wordEditText.getText().toString();
         newWord.definition = definitionEditText.getText().toString();
         newWord.synonyms = synonymsEditText.getText().toString();
@@ -72,6 +78,8 @@ public class NewVocab extends AppCompatActivity {
     }
 
     private void initialize() {
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
         wordEditText = findViewById(R.id.wordEditText);
         definitionEditText = findViewById(R.id.definitionEditText);
         synonymsEditText = findViewById(R.id.synonymsEditText);
