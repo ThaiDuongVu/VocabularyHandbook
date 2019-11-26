@@ -14,7 +14,7 @@ public class NewWord {
     public boolean noun;
     public boolean adj;
     public boolean adverb;
-    
+
     public boolean formal;
 
     public void saveWord(SharedPreferences sharedPreferences, int index) {

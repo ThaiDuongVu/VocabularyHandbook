@@ -1,11 +1,11 @@
 package com.thaiduong.vocabularyhandbook;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -35,6 +35,8 @@ public class EditVocab extends AppCompatActivity {
     private Switch formalSwitch;
 
     private int index;
+
+    private boolean saveButtonClicked;
 
     private NewWord editWord;
 
@@ -78,6 +80,36 @@ public class EditVocab extends AppCompatActivity {
         }
     }
 
+    public void onBackPressed() {
+        if (!saveButtonClicked) {
+            AlertDialog alertDialog = new AlertDialog.Builder(this)
+                    .setMessage("Your word has not been saved, are you sure you want to go back?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivityForResult(homeIntent, 0);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(getApplicationContext(), "Nothing happened", Toast.LENGTH_SHORT).show();
+                        }
+                    }).show();
+        } else {
+            Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivityForResult(homeIntent, 0);
+        }
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
     public void saveWord(View view) {
         int vibratingDuration = 50;
         vibrator.vibrate(vibratingDuration);
@@ -98,6 +130,8 @@ public class EditVocab extends AppCompatActivity {
 
         editWord.saveWord(sharedPreferences, index);
         Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
+
+        saveButtonClicked = true;
     }
 
     private void initialize() {
