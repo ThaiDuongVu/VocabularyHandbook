@@ -53,6 +53,9 @@ public class NewVocab extends AppCompatActivity {
     }
 
     public void onBackPressed() {
+        // If the user exit without saving the word, there will be a warning message
+        // If user says yes then exit, otherwise nothing happen
+
         if (!saveButtonClicked) {
             AlertDialog alertDialog = new AlertDialog.Builder(this)
                     .setMessage("Your word has not been saved, are you sure you want to go back?")
@@ -77,11 +80,16 @@ public class NewVocab extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        // When user press up button on action bar, behave the same as if they press the back button
+
         onBackPressed();
         return true;
     }
 
     public void onSaveButtonClicked(View view) {
+        // Save the word to memory if save button is clicked
+
+        // Haptic feedback
         int vibratingDuration = 50;
         vibrator.vibrate(vibratingDuration);
 
@@ -100,8 +108,10 @@ public class NewVocab extends AppCompatActivity {
         newWord.formal = formalSwitch.isChecked();
 
         newWord.saveWord(sharedPreferences, numberOfWords);
+        // Display a message to let user know that word is saved successfully
         Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
 
+        // If this is the first time the save button is clicked, update the number of words that was saved
         if (!saveButtonClicked) {
             numberOfWords++;
             sharedPreferences.edit().putInt("NumberOfWords", numberOfWords).apply();
@@ -110,6 +120,8 @@ public class NewVocab extends AppCompatActivity {
     }
 
     private void initialize() {
+        // Link the variables to their widgets in the layout
+
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         wordEditText = findViewById(R.id.wordEditText);
@@ -129,6 +141,7 @@ public class NewVocab extends AppCompatActivity {
         sharedPreferences = this.getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
         numberOfWords = sharedPreferences.getInt("NumberOfWords", 0);
 
+        // Set display action bar
         ActionBar actionBar;
         actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);

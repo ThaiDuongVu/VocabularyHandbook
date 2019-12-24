@@ -29,19 +29,23 @@ public class HomeActivity extends AppCompatActivity {
 
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
+        // Add the already saved words to the layout
         for (int i = 0; i < numberOfWords; i++) {
             addExistingWords(i);
         }
     }
 
     private void addExistingWords(final int index) {
+        // Add the already saved words to the layout
+
         LinearLayout linearLayout = findViewById(R.id.linearLayoutUp);
 
-        TextView[] textViews = new TextView[7];
+        TextView[] textViews = new TextView[7]; // The properties of the word
 
-        TextView word = new TextView(this);
-        Button editButton = new Button(this, null, 0, R.style.Widget_AppCompat_Button_Colored);
+        TextView word = new TextView(this); // The word itself
+        Button editButton = new Button(this, null, 0, R.style.Widget_AppCompat_Button_Colored); // Button to edit word
 
+        // Set appearance of the text views and buttons
         word.setTextAppearance(this, R.style.TextAppearance_AppCompat);
         word.setText(sharedPreferences.getString("Word" + index, ""));
         word.setTextSize(20);
@@ -53,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             textViews[i].setTextSize(18);
         }
 
+        // Set text views to display the word and its properties
         String definition = "Definition: " + sharedPreferences.getString("Definition" + index, "");
         String synonyms = "Synonyms: " + sharedPreferences.getString("Synonyms" + index, "");
         String antonyms = "Antonyms: " + sharedPreferences.getString("Antonyms" + index, "");
@@ -90,6 +95,7 @@ public class HomeActivity extends AppCompatActivity {
         editButton.setText(getResources().getString(R.string.edit_button));
         editButton.setTextSize(18);
 
+        // Go to edit word if the edit button is clicked
         editButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 vibrator.vibrate(vibratingDuration);
@@ -99,6 +105,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // Add all the text views and button to the layout
         linearLayout.addView(word);
         for (int i = 0; i < textViews.length; i++) {
             linearLayout.addView(textViews[i]);
@@ -107,7 +114,12 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void onNewButtonClicked(View view) {
+        // Create new word when New button is clicked
+
+        // Haptic feedback
         vibrator.vibrate(vibratingDuration);
+
+        // Go to New Vocab layout
         Intent newIntent = new Intent(view.getContext(), NewVocab.class);
         startActivityForResult(newIntent, 0);
     }

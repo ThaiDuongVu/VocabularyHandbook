@@ -18,6 +18,8 @@ public class NewWord {
     public boolean formal;
 
     public void saveWord(SharedPreferences sharedPreferences, int index) {
+        // Save the properties of the word and the word itself to the system
+
         sharedPreferences.edit().putString("Word" + index, word).apply();
         sharedPreferences.edit().putString("Definition" + index, definition).apply();
         sharedPreferences.edit().putString("Synonyms" + index, synonyms).apply();

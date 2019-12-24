@@ -55,6 +55,8 @@ public class EditVocab extends AppCompatActivity {
     }
 
     private void loadWord() {
+        // Set the text views to display the word that is being edited
+
         wordEditText.setText(sharedPreferences.getString("Word" + index, ""));
         definitionEditText.setText(sharedPreferences.getString("Definition" + index, ""));
         synonymsEditText.setText(sharedPreferences.getString("Synonyms" + index, ""));
@@ -81,6 +83,9 @@ public class EditVocab extends AppCompatActivity {
     }
 
     public void onBackPressed() {
+        // If the user exit without saving the word, there will be a warning message
+        // If user says yes then exit, otherwise nothing happen
+
         if (!saveButtonClicked) {
             AlertDialog alertDialog = new AlertDialog.Builder(this)
                     .setMessage("Your word has not been saved, are you sure you want to go back?")
@@ -106,12 +111,17 @@ public class EditVocab extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        // When user press up button on action bar, behave the same as if they press the back button
+
         onBackPressed();
         return true;
     }
 
     public void saveWord(View view) {
+        // Save the word to memory if save button is clicked
+
         int vibratingDuration = 50;
+        // Haptic feedback
         vibrator.vibrate(vibratingDuration);
 
         editWord.word = wordEditText.getText().toString();
@@ -129,12 +139,15 @@ public class EditVocab extends AppCompatActivity {
         editWord.formal = formalSwitch.isChecked();
 
         editWord.saveWord(sharedPreferences, index);
+        // Display a message to let user know that word is saved successfully
         Toast.makeText(this, "Saved!", Toast.LENGTH_SHORT).show();
 
         saveButtonClicked = true;
     }
 
     private void initialize() {
+        // Link the variables to their widgets in the layout
+
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         wordEditText = findViewById(R.id.wordEditText);
@@ -153,6 +166,7 @@ public class EditVocab extends AppCompatActivity {
 
         index = sharedPreferences.getInt("EditIndex", 0);
 
+        // Set display action bar
         ActionBar actionBar;
         actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
