@@ -119,7 +119,7 @@ public class EditVocabActivity extends AppCompatActivity {
         return true;
     }
 
-    public void saveWord(View view) {
+    public void onSaveButtonClicked(View view) {
         // Save the word to memory if save button is clicked
 
         int vibratingDuration = 50;
