@@ -2,22 +2,38 @@ package com.thaiduong.vocabularyhandbook;
 
 import android.content.SharedPreferences;
 
-public class NewWord {
-    public String word;
-    public String definition;
-    public String synonyms;
-    public String antonyms;
-    public String collocations;
-    public String examples;
+class Word {
+    private String word;
+    private String definition;
+    private String synonyms;
+    private String antonyms;
+    private String collocations;
+    private String examples;
 
-    public boolean verb;
-    public boolean noun;
-    public boolean adj;
-    public boolean adverb;
+    private boolean verb;
+    private boolean noun;
+    private boolean adj;
+    private boolean adverb;
+    private boolean formal;
 
-    public boolean formal;
+    void setString(String[] wordProperties) {
+        word = wordProperties[0];
+        definition = wordProperties[1];
+        synonyms = wordProperties[2];
+        antonyms = wordProperties[3];
+        collocations = wordProperties[4];
+        examples = wordProperties[5];
+    }
 
-    public void saveWord(SharedPreferences sharedPreferences, int index) {
+    void setBool(boolean[] wordProperties) {
+        verb = wordProperties[0];
+        noun = wordProperties[1];
+        adj = wordProperties[2];
+        adverb = wordProperties[3];
+        formal = wordProperties[4];
+    }
+
+    void save(SharedPreferences sharedPreferences, int index) {
         // Save the properties of the word and the word itself to the system
 
         sharedPreferences.edit().putString("Word" + index, word).apply();

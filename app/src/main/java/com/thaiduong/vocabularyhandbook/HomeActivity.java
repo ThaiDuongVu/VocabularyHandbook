@@ -100,15 +100,15 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 vibrator.vibrate(vibratingDuration);
                 sharedPreferences.edit().putInt("EditIndex", index).apply();
-                Intent editIntent = new Intent(view.getContext(), EditVocab.class);
+                Intent editIntent = new Intent(view.getContext(), EditVocabActivity.class);
                 startActivityForResult(editIntent, 0);
             }
         });
 
         // Add all the text views and button to the layout
         linearLayout.addView(word);
-        for (int i = 0; i < textViews.length; i++) {
-            linearLayout.addView(textViews[i]);
+        for (TextView textView : textViews) {
+            linearLayout.addView(textView);
         }
         linearLayout.addView(editButton);
     }
@@ -120,7 +120,7 @@ public class HomeActivity extends AppCompatActivity {
         vibrator.vibrate(vibratingDuration);
 
         // Go to New Vocab layout
-        Intent newIntent = new Intent(view.getContext(), NewVocab.class);
+        Intent newIntent = new Intent(view.getContext(), CreateVocabActivity.class);
         startActivityForResult(newIntent, 0);
     }
 }
