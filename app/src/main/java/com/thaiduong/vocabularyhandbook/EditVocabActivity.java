@@ -43,6 +43,7 @@ public class EditVocabActivity extends AppCompatActivity {
     private Word editWord;
 
     private Vibrator vibrator;
+    private int vibratingDuration = 50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,12 +96,14 @@ public class EditVocabActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent homeIntent = new Intent(getApplicationContext(), HomeActivity.class);
+                            vibrator.vibrate(vibratingDuration);
                             startActivityForResult(homeIntent, 0);
                         }
                     })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            vibrator.vibrate(vibratingDuration);
                             Toast.makeText(getApplicationContext(), "Nothing happened", Toast.LENGTH_SHORT).show();
                         }
                     }).show();
@@ -122,7 +125,6 @@ public class EditVocabActivity extends AppCompatActivity {
     public void onSaveButtonClicked(View view) {
         // Save the word to memory if save button is clicked
 
-        int vibratingDuration = 50;
         // Haptic feedback
         vibrator.vibrate(vibratingDuration);
 
