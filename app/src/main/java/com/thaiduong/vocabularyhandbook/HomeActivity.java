@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity {
@@ -19,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     private Vibrator vibrator;
     private int vibratingDuration = 50;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     private void addExistingWords(final int index) {
         // Add the already saved words to the layout
 
@@ -47,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
 
         // Set appearance of the text views and buttons
         word.setTextAppearance(this, R.style.TextAppearance_AppCompat);
+        word.setTextColor(getResources().getColor(R.color.colorPrimary));
+//        word.setTypeface(getResources().getFont(R.font.roboto_light));
         word.setText(sharedPreferences.getString("Word" + index, ""));
         word.setTextSize(20);
         word.setTypeface(null, Typeface.BOLD);
@@ -54,6 +60,8 @@ public class HomeActivity extends AppCompatActivity {
         for (int i = 0; i < textViews.length; i++) {
             textViews[i] = new TextView(this);
             textViews[i].setTextAppearance(this, R.style.TextAppearance_AppCompat);
+            textViews[i].setTextColor(getResources().getColor(R.color.colorPrimary));
+//            textViews[i].setTypeface(getResources().getFont(R.font.roboto_light));
             textViews[i].setTextSize(18);
         }
 
@@ -93,6 +101,7 @@ public class HomeActivity extends AppCompatActivity {
         textViews[6].setText(formality);
 
         editButton.setText(getResources().getString(R.string.edit_button));
+        editButton.setAllCaps(false);
         editButton.setTextSize(18);
 
         // Go to edit word if the edit button is clicked

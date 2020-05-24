@@ -5,6 +5,7 @@
     android:id="@+id/ConstraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".HomeActivity">
 
     <ScrollView
@@ -27,10 +28,13 @@
     <Button
         android:id="@+id/newVocabButton"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_light"
         android:onClick="onNewButtonClicked"
+        android:padding="15sp"
         android:text="@string/new_vocab_button"
+        android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
